@@ -11,7 +11,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import RootNavigator from '@/navigator';
 
-function App(): JSX.Element {
+const App = (): JSX.Element => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -19,6 +19,6 @@ function App(): JSX.Element {
       </NavigationContainer>
     </SafeAreaProvider>
   );
-}
+};
 
 export default App;

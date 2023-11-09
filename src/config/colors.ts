@@ -1,3 +1,4 @@
+// color template for application
 const colors = {
   white: '#FFFFFF',
   primary: '#1738D8',

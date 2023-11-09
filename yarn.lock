@@ -5729,6 +5729,11 @@ react-native-config@^1.5.1:
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.5.1.tgz#73c94f511493e9b7ff9350cdf351d203a1b05acc"
   integrity sha512-g1xNgt1tV95FCX+iWz6YJonxXkQX0GdD3fB8xQtR1GUBEqweB9zMROW77gi2TygmYmUkBI7LU4pES+zcTyK4HA==
 
+react-native-format-currency@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-format-currency/-/react-native-format-currency-0.0.3.tgz#31e2db4c6955bb78e5efb926fb92a2927af47ccb"
+  integrity sha512-MLCTyQ+B9DWz85KQZzqsjY+peKYScnemRobTcNb+A6bstmNR8LLK8dx3PAYlwc5ZQ0PMm13XXAqT2sPwp9UKAA==
+
 react-native-ratings@^8.1.0:
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/react-native-ratings/-/react-native-ratings-8.1.0.tgz#3fa9ad29128dc3a88e59518ba151e61c59dd0647"

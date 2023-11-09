@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {Avatar, ListItem} from '@rneui/themed';
 import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import axios from '@/config/axios';
 import colors from '@/config/colors';
+import ListItem from '@/components/listItem';
 import {RootStackParamList} from '@/navigator';
 import {IProduct, selectProduct} from '@/store/product/productSlice';
 
@@ -18,6 +18,7 @@ const Products = ({navigation}: IProductsScreen): React.ReactElement => {
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
 
+  // Fetch data from API
   const onLoadProducts = useCallback(async () => {
     setLoading(true);
     try {
@@ -29,6 +30,7 @@ const Products = ({navigation}: IProductsScreen): React.ReactElement => {
     }
   }, [setProducts, setLoading]);
 
+  // Load data when component mount
   useEffect(() => {
     onLoadProducts();
   }, [onLoadProducts]);
@@ -42,22 +44,16 @@ const Products = ({navigation}: IProductsScreen): React.ReactElement => {
       />
       <FlatList
         data={products}
-        refreshing={loading}
-        onRefresh={onLoadProducts}
+        refreshing={loading} // Loading indicator
+        onRefresh={onLoadProducts} // Pull-to-refresh functionality
         renderItem={({item}) => (
           <ListItem
-            bottomDivider
+            item={item}
             onPress={() => {
-              dispatch(selectProduct(item));
-              navigation.navigate('Product');
-            }}>
-            <Avatar rounded source={{uri: item.image}} />
-            <ListItem.Content>
-              <ListItem.Title>{item?.product_name}</ListItem.Title>
-              <ListItem.Subtitle>{item?.price}</ListItem.Subtitle>
-            </ListItem.Content>
-            <ListItem.Chevron />
-          </ListItem>
+              dispatch(selectProduct(item)); // Set selected item to reducer
+              navigation.navigate('Product'); // Navigate to Product screen
+            }}
+          />
         )}
       />
     </View>

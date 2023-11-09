@@ -16,8 +16,8 @@ const RootNavigator = (): React.ReactElement<any> => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: colors.white,
-        headerStyle: {backgroundColor: colors.primary},
+        headerTintColor: colors.white, // Change header text color
+        headerStyle: {backgroundColor: colors.primary}, // Change header background color
       }}>
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Product" component={Product} />

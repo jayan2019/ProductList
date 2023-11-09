@@ -16,6 +16,7 @@ const initialState: ProductState = {
   selected_product: undefined,
 };
 
+// Product reduer for display selected product
 export const productSlice = createSlice({
   name: 'product',
   initialState,

@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {SearchBar, Icon} from '@rneui/themed';
 import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
@@ -18,6 +19,8 @@ const Products = ({navigation}: IProductsScreen): React.ReactElement => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [searchText, setSearchText] = useState<string>('');
+  const [searchedProducts, setSearchedProducts] = useState<IProduct[]>([]);
 
   // Fetch data from API
   const onLoadProducts = useCallback(async () => {
@@ -36,6 +39,19 @@ const Products = ({navigation}: IProductsScreen): React.ReactElement => {
     onLoadProducts();
   }, [onLoadProducts]);
 
+  // Search function
+  const onSearch = (text?: string) => {
+    if (!text) return setSearchText('');
+    const searchResult = products.filter(
+      product =>
+        product.product_name
+          .toLocaleLowerCase()
+          .indexOf(text.toLocaleLowerCase()) > -1,
+    );
+    setSearchText(text);
+    setSearchedProducts(searchResult);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -43,10 +59,24 @@ const Products = ({navigation}: IProductsScreen): React.ReactElement => {
         barStyle={'light-content'}
         backgroundColor={'transparent'}
       />
+      <SearchBar
+        platform="ios"
+        value={searchText}
+        placeholder="Type to search..."
+        onChangeText={v => onSearch(v)}
+        searchIcon={<Icon name="search" type="ionicon" />}
+        clearIcon={
+          <Icon
+            type="ionicon"
+            name="close-circle"
+            onPress={() => setSearchText('')}
+          />
+        }
+      />
       <FlatList
-        data={products}
         refreshing={loading} // Loading indicator
         onRefresh={onLoadProducts} // Pull-to-refresh functionality
+        data={searchText ? searchedProducts : products}
         renderItem={({item}) => (
           <ListItem
             item={item}
@@ -64,7 +94,6 @@ const Products = ({navigation}: IProductsScreen): React.ReactElement => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: 10,
     backgroundColor: colors.background,
   },
 });

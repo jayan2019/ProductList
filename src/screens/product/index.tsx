@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useRef, useEffect, useCallback} from 'react';
 import {Icon} from '@rneui/themed';
 import {useSelector} from 'react-redux';
 import {formatCurrency} from 'react-native-format-currency';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Image, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, View, ScrollView, Animated} from 'react-native';
 
 import {RootState} from '@/store';
 import colors from '@/config/colors';
@@ -14,6 +14,7 @@ interface IProductScreen
 
 // Mostly used "react-native" components
 const Product = ({navigation}: IProductScreen): React.ReactElement => {
+  const springAni = useRef(new Animated.Value(0)).current;
   // Get selected product from reducer
   const product = useSelector(
     (state: RootState) => state.product.selected_product,
@@ -21,16 +22,35 @@ const Product = ({navigation}: IProductScreen): React.ReactElement => {
   // Format price number for Euro format
   const [formated] = formatCurrency({amount: product?.price || 0, code: 'EUR'});
 
+  // spring Animation
+  const spring = useCallback(() => {
+    Animated.spring(springAni, {
+      toValue: 1,
+      friction: 3,
+      useNativeDriver: true,
+    }).start();
+  }, [springAni]);
+
   // Set header title once product name avilable
-  React.useEffect(() => {
+  useEffect(() => {
     if (product?.product_name) {
       navigation.setOptions({title: product?.product_name});
     }
   }, [navigation, product]);
 
+  // Call image animation once image URL avilable
+  useEffect(() => {
+    if (product?.image) {
+      spring();
+    }
+  }, [spring, product]);
+
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{uri: product?.image}} />
+      <Animated.Image
+        source={{uri: product?.image}}
+        style={[styles.image, {transform: [{scale: springAni}]}]}
+      />
       <View style={styles.detailContainer}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{product?.product_name || '-'}</Text>

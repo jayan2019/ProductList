@@ -15,7 +15,7 @@ const ListItem = ({onPress, item}: IListItem): React.ReactElement => {
 
   return (
     <BaseIListItem bottomDivider onPress={onPress}>
-      <Avatar rounded source={{uri: item.image}} />
+      <Avatar source={{uri: item.image}} size="medium" />
       <BaseIListItem.Content>
         <BaseIListItem.Title>{item?.product_name}</BaseIListItem.Title>
         <BaseIListItem.Subtitle>{formated}</BaseIListItem.Subtitle>

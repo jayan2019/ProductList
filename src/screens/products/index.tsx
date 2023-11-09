@@ -12,6 +12,7 @@ import {IProduct, selectProduct} from '@/store/product/productSlice';
 interface IProductsScreen
   extends NativeStackScreenProps<RootStackParamList, 'Products'> {}
 
+// Mostly used "react-native-elements" components
 const Products = ({navigation}: IProductsScreen): React.ReactElement => {
   const dispatch = useDispatch();
 
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingLeft: 10,
-    backgroundColor: colors.white,
+    backgroundColor: colors.background,
   },
 });
 

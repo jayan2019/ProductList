@@ -1,14 +1,14 @@
 import React from 'react';
+import {NavigationProp} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import colors from '@/config/colors';
 import Product from '@/screens/product';
 import Products from '@/screens/products';
 
-export type RootStackParamList = {
-  Products: undefined;
-  Product: undefined;
-};
+export type ScreenNames = ['Products', 'Product'];
+export type RootStackParamList = Record<ScreenNames[number], undefined>;
+export type StackNavigation = NavigationProp<RootStackParamList>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

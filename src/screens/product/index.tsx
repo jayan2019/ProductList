@@ -1,19 +1,16 @@
 import React, {useRef, useEffect, useCallback} from 'react';
 import {Icon} from '@rneui/themed';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 import {formatCurrency} from 'react-native-format-currency';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {StyleSheet, Text, View, ScrollView, Animated} from 'react-native';
 
 import {RootState} from '@/store';
 import colors from '@/config/colors';
-import {RootStackParamList} from '@/navigator';
-
-interface IProductScreen
-  extends NativeStackScreenProps<RootStackParamList, 'Product'> {}
 
 // Mostly used "react-native" components
-const Product = ({navigation}: IProductScreen): React.ReactElement => {
+const Product = (): React.ReactElement => {
+  const navigation = useNavigation();
   const springAni = useRef(new Animated.Value(0)).current;
   // Get selected product from reducer
   const product = useSelector(
@@ -36,7 +33,7 @@ const Product = ({navigation}: IProductScreen): React.ReactElement => {
     if (product?.product_name) {
       navigation.setOptions({title: product?.product_name});
     }
-  }, [navigation, product]);
+  }, [product]);
 
   // Call image animation once image URL avilable
   useEffect(() => {

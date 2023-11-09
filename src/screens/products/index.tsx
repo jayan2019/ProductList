@@ -1,21 +1,19 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {SearchBar, Icon} from '@rneui/themed';
+import {useNavigation} from '@react-navigation/native';
 import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
-import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import axios from '@/config/axios';
 import colors from '@/config/colors';
+import {StackNavigation} from '@/navigator';
 import ListItem from '@/components/listItem';
-import {RootStackParamList} from '@/navigator';
 import {IProduct, selectProduct} from '@/store/product/productSlice';
 
-interface IProductsScreen
-  extends NativeStackScreenProps<RootStackParamList, 'Products'> {}
-
 // Mostly used "react-native-elements" components
-const Products = ({navigation}: IProductsScreen): React.ReactElement => {
+const Products = (): React.ReactElement => {
   const dispatch = useDispatch();
+  const navigation = useNavigation<StackNavigation>();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);

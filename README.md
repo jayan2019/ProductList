@@ -94,7 +94,7 @@ Starts the test with covarage
 
 For the purpose of achieving and conducting experiments, the following components are used in this project.
 
-### `react-navigation`
+#### `react-navigation`
 
 This component is used for navigating between screens when the user taps on a product item. It also handles the app header and facilitates back navigation. [Documentation](https://reactnavigation.org/docs/getting-started)
 
@@ -118,6 +118,8 @@ This lightweight international currency formatter is used to format numbers into
 
 #### `Android`
 
-[YouTube - Product List App Demo - Android](https://youtu.be/PCy2bE8MQkY)
+[YouTube - Product List App Demo - Android](https://youtube.com/shorts/2SWrED2UP5E?feature=share)
 
 #### `iOS`
+
+[YouTube - Product List App Demo - iOS](https://youtube.com/shorts/SqbkkCDxzDA?feature=share)

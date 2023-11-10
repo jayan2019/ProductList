@@ -2,7 +2,13 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {SearchBar, Icon} from '@rneui/themed';
 import {useNavigation} from '@react-navigation/native';
-import {FlatList, StatusBar, StyleSheet, View} from 'react-native';
+import {
+  View,
+  FlatList,
+  StatusBar,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 
 import axios from '@/config/axios';
 import colors from '@/config/colors';
@@ -16,21 +22,25 @@ const Products = (): React.ReactElement => {
   const navigation = useNavigation<StackNavigation>();
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [fetching, setFetching] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
   const [searchText, setSearchText] = useState<string>('');
   const [searchedProducts, setSearchedProducts] = useState<IProduct[]>([]);
 
   // Fetch data from API
-  const onLoadProducts = useCallback(async () => {
-    setLoading(true);
-    try {
-      const {data} = await axios.get('/products');
-      setProducts(data);
-      setLoading(false);
-    } catch (e) {
-      setLoading(false);
-    }
-  }, [setProducts, setLoading]);
+  const onLoadProducts = useCallback(
+    async (fetch?: boolean) => {
+      fetch ? setFetching(true) : setLoading(true);
+      try {
+        const {data} = await axios.get('/products');
+        setProducts(data);
+        fetch ? setFetching(false) : setLoading(false);
+      } catch (e) {
+        fetch ? setFetching(false) : setLoading(false);
+      }
+    },
+    [setProducts, setLoading, setFetching],
+  );
 
   // Load data when component mount
   useEffect(() => {
@@ -71,9 +81,16 @@ const Products = (): React.ReactElement => {
           />
         }
       />
+
+      {loading ? (
+        <View style={styles.loading}>
+          <ActivityIndicator size="small" />
+        </View>
+      ) : null}
+
       <FlatList
-        refreshing={loading} // Loading indicator
-        onRefresh={onLoadProducts} // Pull-to-refresh functionality
+        refreshing={fetching} // Loading indicator
+        onRefresh={() => onLoadProducts(true)} // Pull-to-refresh functionality
         data={searchText ? searchedProducts : products}
         renderItem={({item}) => (
           <ListItem
@@ -93,6 +110,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  loading: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
   },
 });
 

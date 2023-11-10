@@ -1,12 +1,11 @@
 import React, {useRef, useEffect, useCallback} from 'react';
-import {Icon} from '@rneui/themed';
 import {useSelector} from 'react-redux';
 import {useNavigation} from '@react-navigation/native';
-import {formatCurrency} from 'react-native-format-currency';
-import {StyleSheet, Text, View, ScrollView, Animated} from 'react-native';
+import {StyleSheet, View, ScrollView, Animated} from 'react-native';
 
 import {RootState} from '@/store';
 import colors from '@/config/colors';
+import ViewItem from '@/components/viewItem';
 
 // Mostly used "react-native" components
 const Product = (): React.ReactElement => {
@@ -16,8 +15,6 @@ const Product = (): React.ReactElement => {
   const product = useSelector(
     (state: RootState) => state.product.selected_product,
   );
-  // Format price number for Euro format
-  const [formated] = formatCurrency({amount: product?.price || 0, code: 'EUR'});
 
   // spring Animation
   const spring = useCallback(() => {
@@ -48,26 +45,15 @@ const Product = (): React.ReactElement => {
         source={{uri: product?.image}}
         style={[styles.image, {transform: [{scale: springAni}]}]}
       />
-      <View style={styles.detailContainer}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{product?.product_name || '-'}</Text>
-          <Text style={styles.amount}>{formated}</Text>
-        </View>
-        <ScrollView>
-          <Text style={styles.description}>
-            {product?.product_description || '-'}
-          </Text>
-        </ScrollView>
-        <View style={styles.bottomContainer}>
-          <Icon name="add-shopping-cart" type="material" color={colors.light} />
-          <View style={styles.divider} />
-          <Icon
-            type="material"
-            color={colors.light}
-            name="remove-shopping-cart"
-          />
-        </View>
-      </View>
+
+      <ScrollView style={styles.detailContainer}>
+        <ViewItem label="Product Name" value={product?.product_name} />
+        <ViewItem label="Price" amount={product?.price} />
+        <ViewItem
+          label="Brief Description"
+          value={product?.product_description}
+        />
+      </ScrollView>
     </View>
   );
 };
@@ -90,44 +76,7 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 20,
     borderRadius: 10,
-    paddingBottom: 0,
-    alignItems: 'center',
     backgroundColor: colors.white,
-  },
-  titleContainer: {
-    marginBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'baseline',
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-  amount: {
-    fontSize: 16,
-    marginLeft: 10,
-    fontWeight: 'bold',
-    color: colors.light,
-  },
-  description: {
-    fontSize: 14,
-    color: colors.light,
-    textAlign: 'justify',
-  },
-  divider: {
-    width: 1,
-    height: '100%',
-    marginHorizontal: 20,
-    backgroundColor: colors.light,
-  },
-  bottomContainer: {
-    borderTopWidth: 1,
-    paddingVertical: 5,
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingHorizontal: 40,
-    justifyContent: 'center',
-    borderColor: colors.light,
   },
 });
 

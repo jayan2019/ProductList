@@ -24,7 +24,7 @@ describe('Product screen', () => {
   it('render without crashing', async () => {
     render(<Product />);
 
-    const amount = await screen.findByText('€0');
-    expect(amount).toBeTruthy();
+    const label = await screen.findByText('Brief Description');
+    expect(label).toBeTruthy();
   });
 });

@@ -31,8 +31,12 @@ git clone git@github.com:jayan2019/ProductList.git
 
 You can use git to clone the project or can download the project as [zip](https://github.com/jayan2019/ProductList/archive/refs/heads/main.zip).
 
-```
-npm install  ||  yarn
+```bash
+# using npm
+npm install
+
+# OR using Yarn
+yarn
 ```
 
 Install dependencies, you can use [npm](http://npmjs.com) or [yarn](https://yarnpkg.com) to install node modules.
@@ -42,30 +46,46 @@ Install dependencies, you can use [npm](http://npmjs.com) or [yarn](https://yarn
 Open project in react native compatible IDE
 
 Copy the `.env.example` file and create a `.env` file in root folder.
-Change `REACT_NATIVE_API_URL` with this [Demo URL](https://654cfbeb77200d6ba859d03c.mockapi.io/api/v1)
+Change `REACT_NATIVE_API_URL` with this [Demo API URL](https://654cfbeb77200d6ba859d03c.mockapi.io/api/v1)
 
 Some basic commands to use in Command Prompt or Terminal
 
-```
-npm start  ||  yarn start
+```bash
+# using npm
+npm start
+
+# OR using Yarn
+yarn start
 ```
 
 Starts the Metro.
 
-```
-npm run ios  ||  yarn ios
+```bash
+# using npm
+npm run ios
+
+# OR using Yarn
+yarn ios
 ```
 
 Starts the development server and loads ProductList app in an iOS simulator. (Mac only, requires Xcode)
 
-```
-npm run android  ||  yarn android
+```bash
+# using npm
+npm run android
+
+# OR using Yarn
+yarn android
 ```
 
 Starts the development server and loads ProductList app on a connected Android device or emulator. (Requires Android build tools)
 
-```
-npm run test  ||  yarn test
+```bash
+# using npm
+npm run test
+
+# OR using Yarn
+yarn test
 ```
 
 Starts the test with covarage

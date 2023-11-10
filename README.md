@@ -1,14 +1,54 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Product List - React Native Application
 
-# Getting Started
+Simple React Native application with list of products fetched from sample API!
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Table of Contents
 
-## Step 1: Start the Metro Server
+- [Getting Started](#getting-started)
+  - [Download and Setup](#download-and-setup)
+  - [Run the application](#run-the-application)
+- [Core Components](#core-components)
+  - [react-navigation](#react-navigation)
+  - [react-redux & reduxjs/toolkit](#react-redux-&-reduxjs/toolkit)
+  - [react-native-elements](#react-native-elements)
+  - [axios](#axios)
+  - [react-native-format-currency](#react-native-format-currency)
+- [Demo](#demo)
+  - [Android](#android)
+  - [iOS](#ios)
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Getting Started
 
-To start Metro, run the following command from the _root_ of your React Native project:
+This code will run using Expo without rebuilding on Android or IOS
+
+### Download and Setup:
+
+Download or clone the project.
+
+```
+git clone git@github.com:jayan2019/ProductList.git
+```
+
+You can use git to clone the project or can download the project as [zip](https://github.com/jayan2019/ProductList/archive/refs/heads/main.zip).
+
+```bash
+# using npm
+npm install
+
+# OR using Yarn
+yarn
+```
+
+Install dependencies, you can use [npm](http://npmjs.com) or [yarn](https://yarnpkg.com) to install node modules.
+
+### Run the application:
+
+Open project in react native compatible IDE
+
+Copy the `.env.example` file and create a `.env` file in root folder.
+Change `REACT_NATIVE_API_URL` with this [Demo API URL](https://654cfbeb77200d6ba859d03c.mockapi.io/api/v1)
+
+Some basic commands to use in Command Prompt or Terminal
 
 ```bash
 # using npm
@@ -18,21 +58,7 @@ npm start
 yarn start
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
+Starts the Metro.
 
 ```bash
 # using npm
@@ -42,38 +68,58 @@ npm run ios
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Starts the development server and loads ProductList app in an iOS simulator. (Mac only, requires Xcode)
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```bash
+# using npm
+npm run android
 
-## Step 3: Modifying your App
+# OR using Yarn
+yarn android
+```
 
-Now that you have successfully run the app, let's modify it.
+Starts the development server and loads ProductList app on a connected Android device or emulator. (Requires Android build tools)
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+```bash
+# using npm
+npm run test
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+# OR using Yarn
+yarn test
+```
 
-## Congratulations! :tada:
+Starts the test with covarage
 
-You've successfully run and modified your React Native App. :partying_face:
+## Core Components
 
-### Now what?
+For the purpose of achieving and conducting experiments, the following components are used in this project.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+#### `react-navigation`
 
-# Troubleshooting
+This component is used for navigating between screens when the user taps on a product item. It also handles the app header and facilitates back navigation. [Documentation](https://reactnavigation.org/docs/getting-started)
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+#### `react-redux & reduxjs/toolkit`
 
-# Learn More
+These components are employed to save selected products and display them in the product details screen. They are utilized for experimental purposes, as we can achieve the same solution using various methods, including navigation pros. [Documentation](https://redux-toolkit.js.org/introduction/getting-started)
 
-To learn more about React Native, take a look at the following resources:
+#### `react-native-elements (@rneui)`
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+This simple UI kit is used to simplify styling and enhance the overall look and feel. This is also utilized for experimental purposes, as we can use React Native own components or explore numerous excellent UI components available. [Documentation](https://reactnativeelements.com/docs)
+
+#### `axios`
+
+This promise-based HTTP client is used to simplify API requests. [Documentation](https://github.com/axios/axios)
+
+#### `react-native-format-currency`
+
+This lightweight international currency formatter is used to format numbers into the correct currency format. [Documentation](https://github.com/AwesomeLabs/react-native-format-currency)
+
+### Demo
+
+#### `Android`
+
+[YouTube - Product List App Demo - Android](https://youtube.com/shorts/2SWrED2UP5E?feature=share)
+
+#### `iOS`
+
+[YouTube - Product List App Demo - iOS](https://youtube.com/shorts/SqbkkCDxzDA?feature=share)

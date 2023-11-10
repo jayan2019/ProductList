@@ -5,7 +5,7 @@ Simple React Native application with list of products fetched from sample API!
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-  - [Download and Setup](#download-and-setup)
+  - [Download and Setup application](#download-and-setup)
   - [Run the application](#run-the-application)
 - [Core Components](#core-components)
   - [react-navigation](#react-navigation)
@@ -19,9 +19,9 @@ Simple React Native application with list of products fetched from sample API!
 
 ## Getting Started
 
-This code will run using Expo without rebuilding on Android or IOS
+This React Native application created using React Native CLI, therefore [Environment Setup](https://reactnative.dev/docs/environment-setup) is mandatory.
 
-### Download and Setup:
+### Download and Setup application:
 
 Download or clone the project.
 
